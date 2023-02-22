@@ -11,6 +11,7 @@ function BookManager2() {
   const [category, setCategory] = useState('');
   const [image, setImage] = useState();
   const [price, setPrice] = useState('');
+  const [salePrice, setSalePrice] = useState('');
   const [score, setScore] = useState(0);
   const [quantity, setQuantity] = useState(0);
   const [condition, setCondition] = useState('');
@@ -35,6 +36,7 @@ function BookManager2() {
       setCategory(book.category);
       setImage(book.image);
       setPrice(book.price);
+      setSalePrice(book.salePrice);
       setScore(book.score);
       setQuantity(book.quantity);
       setCondition(book.condition);
@@ -52,6 +54,7 @@ function BookManager2() {
     formData.append('category', category);
     formData.append('image', image);
     formData.append('price', price);
+    formData.append('salePrice', salePrice);
     formData.append('score', score);
     formData.append('quantity', quantity);
     formData.append('condition', condition);
@@ -66,6 +69,7 @@ function BookManager2() {
     formDataModified.append('category', category);
     formDataModified.append('image', image);
     formDataModified.append('price', price);
+    formDataModified.append('salePrice', salePrice);
     formDataModified.append('score', score);
     formDataModified.append('quantity', quantity);
     formDataModified.append('condition', condition);
@@ -82,7 +86,7 @@ function BookManager2() {
         .then(res => {
           console.log('result', res.data);
           setMessage('글이 등록되었습니다.');
-          navigate('/');
+          // navigate('/board');
         });
     } else if (status === 'update') {
       await axios
@@ -94,7 +98,7 @@ function BookManager2() {
         .then(res => {
           console.log('result', res);
           setMessage('글이 수정되었습니다.');
-          navigate('/');
+          navigate('/board');
         });
     }
   };
@@ -126,6 +130,9 @@ function BookManager2() {
       case 'price':
         setPrice(e.target.value);
         break;
+      case 'salePrice':
+        setSalePrice(e.target.value);
+        break;
       case 'score':
         setScore(e.target.value);
         break;
@@ -148,7 +155,7 @@ function BookManager2() {
   return (
     <div>
       <h1>서적 등록하기22222</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="title">서적명</label>
         <input
           id="title"
@@ -198,6 +205,15 @@ function BookManager2() {
           type="number"
           name="price"
           value={price}
+          onChange={inputHandler}
+        />
+        <br />
+        <label htmlFor="salePrice">할인가격</label>
+        <input
+          id="salePrice"
+          type="number"
+          name="salePrice"
+          value={salePrice}
           onChange={inputHandler}
         />
         <br />

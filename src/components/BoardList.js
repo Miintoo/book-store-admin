@@ -12,6 +12,7 @@ function BoardList() {
   useEffect(() => {
     axios.get(`${apiUrl}/book/read`).then(res => {
       setBooks(res.data);
+      console.log('res.data', res.data);
     });
     axios.get(`${apiUrl}/user/read`).then(res => {
       setUsers(res.data);
@@ -77,7 +78,7 @@ function BoardList() {
                 title,
                 author,
                 category,
-                image,
+                imageUrl,
                 price,
                 score,
                 quantity,
@@ -92,7 +93,7 @@ function BoardList() {
                   <td>{author}</td>
                   <td>{category.category}</td>
                   <td>
-                    <img src={image} alt="imageForBook" />
+                    <img src={imageUrl} alt="imageForBook" />
                   </td>
                   <td>{price}</td>
                   <td>{score}</td>
@@ -278,7 +279,7 @@ function BoardList() {
       <button
         type="button"
         onClick={() => {
-          navigate('/orders', {
+          navigate('/board/orders', {
             state: {
               orders,
             },
@@ -298,7 +299,12 @@ function BoardList() {
       >
         multer button
       </button>
-      <p> </p>
+      <img
+        src={
+          'http://elice.iptime.org:8080/test/download/image-1677035882116.jpeg'
+        }
+        alt="image"
+      />
     </div>
   );
 }
