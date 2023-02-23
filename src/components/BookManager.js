@@ -86,7 +86,6 @@ function BookManager() {
         .then(res => {
           console.log('result', res.data);
           setMessage('글이 등록되었습니다.');
-          navigate('/');
         });
     } else if (status === 'update') {
       await axios
@@ -98,7 +97,7 @@ function BookManager() {
         .then(res => {
           console.log('result', res);
           setMessage('글이 수정되었습니다.');
-          navigate('/');
+          navigate('/board');
         });
     }
   };
@@ -108,6 +107,7 @@ function BookManager() {
     reader.readAsDataURL(fileBlob);
     return new Promise(resolve => {
       reader.onload = () => {
+        console.log('reader.result', reader.result);
         setImage(reader.result);
         resolve();
       };
@@ -124,7 +124,8 @@ function BookManager() {
       case 'category':
         setCategory(e.target.value);
         break;
-      case 'image':
+      case 'file':
+        console.log('e.target.files[0]', e.target.files[0]);
         setImage(e.target.files[0]);
         break;
       case 'price':
@@ -155,7 +156,7 @@ function BookManager() {
   return (
     <div>
       <h1>서적 등록하기</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="title">서적명</label>
         <input
           id="title"
@@ -188,15 +189,14 @@ function BookManager() {
         <textarea type="text" name="content" value={content} onChange={inputHandler}></textarea>
         <br /> */}
         <label htmlFor="image">이미지</label>
-        <input
+        {/* <input
           id="image"
           type="file"
           multiple
           name="image"
-          onChange={e => {
-            encodeFileToBase64(e.target.files[0]);
-          }}
-        />
+          onChange={e => encodeFileToBase64(e.target.files[0])}
+        /> */}
+        <input id="file" type="file" name="file" onChange={inputHandler} />
         <img src={image} alt="imagefor" />
         <br />
         <label htmlFor="price">가격</label>

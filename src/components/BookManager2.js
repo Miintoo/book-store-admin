@@ -47,34 +47,6 @@ function BookManager2() {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    const formData = new FormData();
-
-    formData.append('title', title);
-    formData.append('author', author);
-    formData.append('category', category);
-    formData.append('image', image);
-    formData.append('price', price);
-    formData.append('salePrice', salePrice);
-    formData.append('score', score);
-    formData.append('quantity', quantity);
-    formData.append('condition', condition);
-    formData.append('publishedDate', publishedDate);
-    formData.append('publisher', publisher);
-
-    const formDataModified = new FormData();
-
-    formDataModified.append('id', id);
-    formDataModified.append('title', title);
-    formDataModified.append('author', author);
-    formDataModified.append('category', category);
-    formDataModified.append('image', image);
-    formDataModified.append('price', price);
-    formDataModified.append('salePrice', salePrice);
-    formDataModified.append('score', score);
-    formDataModified.append('quantity', quantity);
-    formDataModified.append('condition', condition);
-    formDataModified.append('publishedDate', publishedDate);
-    formDataModified.append('publisher', publisher);
 
     if (status === 'create') {
       await axios
@@ -122,7 +94,20 @@ function BookManager2() {
         setAuthor(e.target.value);
         break;
       case 'category':
-        setCategory(e.target.value);
+        setCategory(() => {
+          const value = e.target.value;
+          switch (value) {
+            case '소설':
+              return '63f2131534c2e6f0d92751bb';
+            case '자기개발':
+              return '63f224e8542a1a6681008b13';
+            case '아동서적':
+              return '63f2274e835ac4d32a4c9915';
+            case '기타':
+              return '63f2d82b5b2238b907c9c4f6';
+            default:
+          }
+        });
         break;
       case 'image':
         setImage(e.target.files[0]);
