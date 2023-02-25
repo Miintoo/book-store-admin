@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Api from 'utils/api';
 import styled from 'styled-components';
 import { format } from 'date-fns';
@@ -8,7 +8,6 @@ import DropDown from './DropDown';
 
 function OrderManagement() {
   const [orderData, setOrderData] = useState([]);
-  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     const getOrderData = async () => {
@@ -50,54 +49,49 @@ function OrderManagement() {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
-      {!isLoading && (
-        <>
-          <PageTitle title="주문 관리" />
-          <ManagementTable>
-            <thead>
-              <ManagementLabelSection>
-                <ManagementTh>주문일</ManagementTh>
-                <ManagementTh>주문번호</ManagementTh>
-                <ManagementTh>주문자명</ManagementTh>
-                <ManagementTh>상품명</ManagementTh>
-                <ManagementTh>총 주문금액</ManagementTh>
-                <ManagementTh>주문상태</ManagementTh>
-                <ManagementTh>목록삭제</ManagementTh>
-              </ManagementLabelSection>
-            </thead>
-            <tbody>
-              {orderManagementData.map((obj) => {
-                return (
-                  <ManagementTr key={obj.orderID}>
-                    {Object.entries(obj).map(([key, value]) => {
-                      return (
-                        <ManagementTd key={key}>
-                          {key === 'orderStatus' ? <DropDown defaultValue={value} orderID={obj.orderID} /> : value}
-                        </ManagementTd>
-                      );
-                    })}
-                    <ManagementTd>
-                      <Button
-                        buttonTitle="삭제"
-                        width="80px"
-                        height="21px"
-                        borderRadius="5px"
-                        borderColor="#B9B9B9"
-                        fontSize="13px"
-                        lineHeight="19px"
-                        padding="0 0 20px 0"
-                        boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-                        onClick={() => handleDelete(obj.orderID)}
-                      />
+      <PageTitle title="주문 관리" />
+      <ManagementTable>
+        <thead>
+          <ManagementLabelSection>
+            <ManagementTh>주문일</ManagementTh>
+            <ManagementTh>주문번호</ManagementTh>
+            <ManagementTh>주문자명</ManagementTh>
+            <ManagementTh>상품명</ManagementTh>
+            <ManagementTh>총 주문금액</ManagementTh>
+            <ManagementTh>주문상태</ManagementTh>
+            <ManagementTh>목록삭제</ManagementTh>
+          </ManagementLabelSection>
+        </thead>
+        <tbody>
+          {orderManagementData.map((obj) => {
+            return (
+              <ManagementTr key={obj.orderID}>
+                {Object.entries(obj).map(([key, value]) => {
+                  return (
+                    <ManagementTd key={key}>
+                      {key === 'orderStatus' ? <DropDown defaultValue={value} orderID={obj.orderID} /> : value}
                     </ManagementTd>
-                  </ManagementTr>
-                );
-              })}
-            </tbody>
-          </ManagementTable>
-        </>
-      )}
+                  );
+                })}
+                <ManagementTd>
+                  <Button
+                    buttonTitle="삭제"
+                    width="80px"
+                    height="21px"
+                    borderRadius="5px"
+                    borderColor="#B9B9B9"
+                    fontSize="13px"
+                    lineHeight="19px"
+                    padding="0 0 20px 0"
+                    boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
+                    onClick={() => handleDelete(obj.orderID)}
+                  />
+                </ManagementTd>
+              </ManagementTr>
+            );
+          })}
+        </tbody>
+      </ManagementTable>
     </>
   );
 }
