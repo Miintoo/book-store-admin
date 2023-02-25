@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { format } from 'date-fns';
 import Button from './commons/button/Button';
 import PageTitle from './commons/pageTitle/PageTitle';
-import DropDown from './DropDown';
+import OrderStatusDropDown from './OrderStatusDropDown';
 
 function OrderManagement() {
   const [orderData, setOrderData] = useState([]);
@@ -69,7 +69,11 @@ function OrderManagement() {
                 {Object.entries(obj).map(([key, value]) => {
                   return (
                     <ManagementTd key={key}>
-                      {key === 'orderStatus' ? <DropDown defaultValue={value} orderID={obj.orderID} /> : value}
+                      {key === 'orderStatus' ? (
+                        <OrderStatusDropDown defaultValue={value} orderID={obj.orderID} />
+                      ) : (
+                        value
+                      )}
                     </ManagementTd>
                   );
                 })}
