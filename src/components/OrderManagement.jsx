@@ -5,15 +5,18 @@ import { format } from 'date-fns';
 import Button from './commons/button/Button';
 import PageTitle from './commons/pageTitle/PageTitle';
 import OrderStatusDropDown from './OrderStatusDropDown';
+import OrderPagination from './OrderPagination';
 
 function OrderManagement() {
   const [orderData, setOrderData] = useState([]);
+  const [page, setPage] = useState(1);
+  const limit = 15;
+  const offset = (page - 1) * limit;
 
   useEffect(() => {
     const getOrderData = async () => {
       const response = await Api.get('/orders');
       setOrderData(response.data);
-      setLoading(false);
     };
     getOrderData();
   }, []);
@@ -35,13 +38,17 @@ function OrderManagement() {
 
   const handleDelete = async (orderID) => {
     console.log(orderID);
-    if (window.confirm('주문 목록을 삭제하시겠습니까?')) {
-      const response = await Api.delete('/orders', {
-        params: {
-          orderID: orderID
-        }
-      });
-      window.location.reload();
+    try {
+      if (window.confirm('주문 목록을 삭제하시겠습니까?')) {
+        const response = await Api.delete('/orders', {
+          params: {
+            orderID: orderID
+          }
+        });
+        window.location.reload();
+      }
+    } catch (err) {
+      console.log(err);
     }
 
     //
@@ -50,52 +57,55 @@ function OrderManagement() {
   return (
     <>
       <PageTitle title="주문 관리" />
-      <ManagementTable>
-        <thead>
-          <ManagementLabelSection>
-            <ManagementTh>주문일</ManagementTh>
-            <ManagementTh>주문번호</ManagementTh>
-            <ManagementTh>주문자명</ManagementTh>
-            <ManagementTh>상품명</ManagementTh>
-            <ManagementTh>총 주문금액</ManagementTh>
-            <ManagementTh>주문상태</ManagementTh>
-            <ManagementTh>목록삭제</ManagementTh>
-          </ManagementLabelSection>
-        </thead>
-        <tbody>
-          {orderManagementData.map((obj) => {
-            return (
-              <ManagementTr key={obj.orderID}>
-                {Object.entries(obj).map(([key, value]) => {
-                  return (
-                    <ManagementTd key={key}>
-                      {key === 'orderStatus' ? (
-                        <OrderStatusDropDown defaultValue={value} orderID={obj.orderID} />
-                      ) : (
-                        value
-                      )}
-                    </ManagementTd>
-                  );
-                })}
-                <ManagementTd>
-                  <Button
-                    buttonTitle="삭제"
-                    width="80px"
-                    height="21px"
-                    borderRadius="5px"
-                    borderColor="#B9B9B9"
-                    fontSize="13px"
-                    lineHeight="19px"
-                    padding="0 0 20px 0"
-                    boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-                    onClick={() => handleDelete(obj.orderID)}
-                  />
-                </ManagementTd>
-              </ManagementTr>
-            );
-          })}
-        </tbody>
-      </ManagementTable>
+      <div>
+        <ManagementTable>
+          <thead>
+            <ManagementLabelSection>
+              <ManagementTh>주문일</ManagementTh>
+              <ManagementTh>주문번호</ManagementTh>
+              <ManagementTh>주문자명</ManagementTh>
+              <ManagementTh>상품명</ManagementTh>
+              <ManagementTh>총 주문금액</ManagementTh>
+              <ManagementTh>주문상태</ManagementTh>
+              <ManagementTh>목록삭제</ManagementTh>
+            </ManagementLabelSection>
+          </thead>
+          <tbody>
+            {orderManagementData.slice(offset, offset + limit).map((obj) => {
+              return (
+                <ManagementTr key={obj.orderID}>
+                  {Object.entries(obj).map(([key, value]) => {
+                    return (
+                      <ManagementTd key={key}>
+                        {key === 'orderStatus' ? (
+                          <OrderStatusDropDown defaultValue={value} orderID={obj.orderID} />
+                        ) : (
+                          value
+                        )}
+                      </ManagementTd>
+                    );
+                  })}
+                  <ManagementTd>
+                    <Button
+                      buttonTitle="삭제"
+                      width="80px"
+                      height="21px"
+                      borderRadius="5px"
+                      borderColor="#B9B9B9"
+                      fontSize="13px"
+                      lineHeight="19px"
+                      padding="0 0 20px 0"
+                      boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
+                      onClick={() => handleDelete(obj.orderID)}
+                    />
+                  </ManagementTd>
+                </ManagementTr>
+              );
+            })}
+          </tbody>
+        </ManagementTable>
+        <OrderPagination totalItemCount={orderManagementData.length} limit={limit} page={page} setPage={setPage} />
+      </div>
     </>
   );
 }
