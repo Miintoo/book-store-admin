@@ -20,21 +20,20 @@ function OrderManager() {
   const orderHandler = () => {
     const data = {
       userId: users[0].id,
-      orderItemList: orders.map(order => ({
+      orderItemList: orders.map((order) => ({
         bookId: order.id,
         quantity: order.quantity,
         price: order.price,
-        title: order.title,
+        title: order.title
       })),
       address: users[0].address,
       phone: users[0].phone,
       email: users[0].email,
-      totalPrice: (() =>
-        orders.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))(),
+      totalPrice: (() => orders.reduce((acc, cur) => acc + cur.price * cur.quantity, 0))()
     };
     console.log('data', data);
 
-    axios.post('http://elice.iptime.org:8080/order/create', data).then(res => {
+    axios.post('http://elice.iptime.org:8080/order/create', data).then((res) => {
       console.log('res', res);
     });
   };
@@ -55,7 +54,7 @@ function OrderManager() {
             </tr>
           </thead>
           <tbody>
-            {orders?.map(order => {
+            {orders?.map((order) => {
               const { id, title, image, price, quantity } = order;
 
               return (
@@ -91,7 +90,7 @@ function OrderManager() {
           </tr>
         </thead>
         <tbody>
-          {users?.map(user => {
+          {users?.map((user) => {
             const { id, name, email, phone, address } = user;
             return (
               <tr key={id}>
@@ -122,12 +121,10 @@ function OrderManager() {
           type="button"
           onClick={async () => {
             console.log('users[0].id', users[0].id);
-            await axios
-              .get(`http://elice.iptime.org:8080/order/read/${users[0].id}`)
-              .then(res => {
-                console.log('res', res);
-                setOrderFrom(res.data);
-              });
+            await axios.get(`http://elice.iptime.org:8080/order/read/${users[0].id}`).then((res) => {
+              console.log('res', res);
+              setOrderFrom(res.data);
+            });
           }}
         >
           주문 목록 가져오기
@@ -137,11 +134,9 @@ function OrderManager() {
           type="button"
           onClick={async () => {
             console.log('orderFrom', orderFrom);
-            await axios
-              .put('http://elice.iptime.org:8080/order/update', orderFrom)
-              .then(res => {
-                console.log('res', res.data);
-              });
+            await axios.put('http://elice.iptime.org:8080/order/update', orderFrom).then((res) => {
+              console.log('res', res.data);
+            });
           }}
         >
           주문 목록 수정하기

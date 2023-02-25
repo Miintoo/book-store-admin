@@ -35,7 +35,7 @@ function UserManager() {
     }
   }, []);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const data = {
@@ -44,7 +44,7 @@ function UserManager() {
       password,
       phone,
       address,
-      point,
+      point
     };
     const dataModified = {
       id,
@@ -53,35 +53,35 @@ function UserManager() {
       password,
       phone,
       address,
-      point,
+      point
     };
     console.log('data', dataModified);
     if (status === 'create') {
       await axios
         .post(`${apiUrl}/user/create`, data)
-        .then(res => {
+        .then((res) => {
           console.log('result', res.data);
           setMessage('사용자가 등록되었습니다.');
           navigate('/');
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('err', err);
         });
     } else if (status === 'update') {
       await axios
         .put(`${apiUrl}/user/update`, dataModified)
-        .then(res => {
+        .then((res) => {
           console.log('result', res.data);
           setMessage('사용자가 수정되었습니다.');
           navigate('/');
         })
-        .catch(err => {
+        .catch((err) => {
           console.log('err', err);
         });
     }
   };
 
-  const inputHandler = e => {
+  const inputHandler = (e) => {
     switch (e.target.name) {
       case 'name':
         setName(e.target.value);
@@ -110,58 +110,22 @@ function UserManager() {
       <h1>사용자 등록</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">이름</label>
-        <input
-          id="name"
-          type="text"
-          name="name"
-          value={name}
-          onChange={inputHandler}
-        />
+        <input id="name" type="text" name="name" value={name} onChange={inputHandler} />
         <br />
         <label htmlFor="email">이메일</label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          value={email}
-          onChange={inputHandler}
-        />
+        <input id="email" type="text" name="email" value={email} onChange={inputHandler} />
         <br />
         <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          type="password"
-          name="password"
-          value={password}
-          onChange={inputHandler}
-        />
+        <input id="password" type="password" name="password" value={password} onChange={inputHandler} />
         <br />
         <label htmlFor="phone">전화번호</label>
-        <input
-          id="phone"
-          type="text"
-          name="phone"
-          value={phone}
-          onChange={inputHandler}
-        />
+        <input id="phone" type="text" name="phone" value={phone} onChange={inputHandler} />
         <br />
         <label htmlFor="address">주소</label>
-        <input
-          id="address"
-          type="text"
-          name="address"
-          value={address}
-          onChange={inputHandler}
-        />
+        <input id="address" type="text" name="address" value={address} onChange={inputHandler} />
         <br />
         <label htmlFor="point">point</label>
-        <input
-          id="point"
-          type="number"
-          name="point"
-          value={point}
-          onChange={inputHandler}
-        />
+        <input id="point" type="number" name="point" value={point} onChange={inputHandler} />
         <br />
 
         {status === 'create' ? (
