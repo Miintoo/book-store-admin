@@ -1,8 +1,8 @@
 import React from 'react';
-import OrderManagement from 'components/OrderManagement';
+import AllOrdersManagement from 'components/AllOrdersManagement';
 
 function OrderManagementPage() {
-  return <OrderManagement />;
+  return <AllOrdersManagement />;
 }
 
 export default OrderManagementPage;
