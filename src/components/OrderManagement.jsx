@@ -10,7 +10,7 @@ import OrderPagination from './OrderPagination';
 function OrderManagement() {
   const [orderData, setOrderData] = useState([]);
   const [page, setPage] = useState(1);
-  const limit = 15;
+  const limit = 10;
   const offset = (page - 1) * limit;
 
   useEffect(() => {
@@ -86,7 +86,7 @@ function OrderManagement() {
                   <ManagementTd>
                     <Button
                       buttonTitle="삭제"
-                      width="80px"
+                      width="60px"
                       height="21px"
                       borderRadius="5px"
                       borderColor="#B9B9B9"
@@ -109,13 +109,14 @@ function OrderManagement() {
 }
 
 const ManagementTable = styled.table`
+  width: 60%;
   margin: 40px auto 50px;
   border: 1px solid #b9b9b9;
 `;
 
 const ManagementLabelSection = styled.tr`
   width: 100%;
-  height: 37px;
+  height: 40px;
   align-items: center;
   border: 1px solid #b9b9b9;
   &:first-child {
@@ -130,25 +131,25 @@ const ManagementTh = styled.th`
   vertical-align: middle;
   line-height: 130%;
   &:first-child {
-    width: 15%;
+    width: 11%;
   }
   &:nth-child(2) {
-    width: 20%;
+    width: 24%;
   }
   &:nth-child(3) {
-    width: 10%;
+    width: 12%;
   }
   &:nth-child(4) {
     width: 21%;
   }
   &:nth-child(5) {
-    width: 12%;
+    width: 14%;
   }
   &:nth-child(6) {
-    width: 12%;
+    width: 10%;
   }
   &:nth-child(7) {
-    width: 10%;
+    width: 7%;
   }
 `;
 
@@ -158,6 +159,7 @@ const ManagementTr = styled.tr`
 
 const ManagementTd = styled.td`
   border: 1px solid #b9b9b9;
+  height: 40px;
   vertical-align: middle;
   text-align: center;
   font-family: 'NotoSansKR-Medium';

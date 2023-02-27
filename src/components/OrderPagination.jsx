@@ -10,6 +10,7 @@ function OrderPagination({ totalItemCount, limit, page, setPage }) {
           {/* < 부등호 기호의 코드값 */}
           &lt;
         </Button>
+        {/* pagesCount만큼의 배열 생성, undefined로 채움, map으로 값을 넣어줌 */}
         {Array(pagesCount)
           .fill()
           .map((_, i) => (
@@ -35,7 +36,7 @@ const Nav = styled.nav`
 
 const Button = styled.button`
   box-sizing: border-box;
-  border: 2px solid grey;
+  border: 1px solid grey;
   border-radius: 3px;
   padding: 8px;
   margin: 0;
