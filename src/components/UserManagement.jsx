@@ -16,6 +16,8 @@ function UserManagement() {
   useEffect(() => {
     const getUserData = async () => {
       const response = await Api.get('/users');
+      // const newUserData = response.data.filter((user) => user.name !== 'noMember');
+      // setUserData(newUserData);
       setUserData(response.data);
     };
     getUserData();
@@ -24,8 +26,6 @@ function UserManagement() {
   console.log('userData', userData);
 
   const userManagementData = userData.map((data) => {
-    // const formatDate = format(new Date(data.order.createdAt), 'yyyy-MM-dd hh:mm:ss');
-    // const orderItemCount = data.orderItemList.length - 1;
     return {
       userID: data._id,
       userName: data.name,
@@ -68,77 +68,90 @@ function UserManagement() {
   return (
     <>
       <PageTitle title="유저 관리" />
-      <Wrapper>
-        <Button
-          buttonTitle="유저 생성"
-          width="60px"
-          height="21px"
-          borderRadius="5px"
-          borderColor="#B9B9B9"
-          fontSize="13px"
-          lineHeight="19px"
-          padding="0 0 20px 0"
-          boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-          onClick={() => handleCreateUser()}
-        />
-        <ManagementTable>
-          <thead>
-            <ManagementLabelSection>
-              <ManagementTh>이름</ManagementTh>
-              <ManagementTh>이메일</ManagementTh>
-              <ManagementTh>전화번호</ManagementTh>
-              <ManagementTh>주소</ManagementTh>
-              <ManagementTh>주문조회</ManagementTh>
-              <ManagementTh>유저삭제</ManagementTh>
-            </ManagementLabelSection>
-          </thead>
-          <tbody>
-            {userManagementData.slice(offset, offset + limit).map((obj) => {
-              return (
-                <ManagementTr key={obj.userID}>
-                  {Object.entries(obj)
-                    .filter((info) => info[0] !== 'userID')
-                    .map(([key, value]) => {
-                      return <ManagementTd key={key}>{value}</ManagementTd>;
-                    })}
-                  <ManagementTd>
-                    <Button
-                      buttonTitle="주문조회"
-                      width="60px"
-                      height="21px"
-                      borderRadius="5px"
-                      borderColor="#B9B9B9"
-                      fontSize="13px"
-                      lineHeight="19px"
-                      padding="0 0 20px 0"
-                      boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-                      onClick={() => handleCheckOrderList(obj.userID)}
-                    />
-                  </ManagementTd>
-                  <ManagementTd>
-                    <Button
-                      buttonTitle="삭제"
-                      width="60px"
-                      height="21px"
-                      borderRadius="5px"
-                      borderColor="#B9B9B9"
-                      fontSize="13px"
-                      lineHeight="19px"
-                      padding="0 0 20px 0"
-                      boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-                      onClick={() => handleDelete(obj.userID)}
-                    />
-                  </ManagementTd>
-                </ManagementTr>
-              );
-            })}
-          </tbody>
-        </ManagementTable>
-      </Wrapper>
-      <Pagination totalItemCount={userManagementData.length} limit={limit} page={page} setPage={setPage} />
+      {userManagementData.length === 0 ? (
+        <EmptyUser>등록된 유저가 없습니다.</EmptyUser>
+      ) : (
+        <>
+          <Wrapper>
+            <Button
+              buttonTitle="유저 생성"
+              width="60px"
+              height="21px"
+              borderRadius="5px"
+              borderColor="#B9B9B9"
+              fontSize="13px"
+              lineHeight="19px"
+              padding="0 0 20px 0"
+              boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
+              onClick={() => handleCreateUser()}
+            />
+            <ManagementTable>
+              <thead>
+                <ManagementLabelSection>
+                  <ManagementTh>이름</ManagementTh>
+                  <ManagementTh>이메일</ManagementTh>
+                  <ManagementTh>전화번호</ManagementTh>
+                  <ManagementTh>주소</ManagementTh>
+                  <ManagementTh>주문조회</ManagementTh>
+                  <ManagementTh>유저삭제</ManagementTh>
+                </ManagementLabelSection>
+              </thead>
+              <tbody>
+                {userManagementData.slice(offset, offset + limit).map((obj) => {
+                  return (
+                    <ManagementTr key={obj.userID}>
+                      {Object.entries(obj)
+                        .filter((info) => info[0] !== 'userID')
+                        .map(([key, value]) => {
+                          return <ManagementTd key={key}>{value}</ManagementTd>;
+                        })}
+                      <ManagementTd>
+                        <Button
+                          buttonTitle="주문조회"
+                          width="60px"
+                          height="21px"
+                          borderRadius="5px"
+                          borderColor="#B9B9B9"
+                          fontSize="13px"
+                          lineHeight="19px"
+                          padding="0 0 20px 0"
+                          boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
+                          onClick={() => handleCheckOrderList(obj.userID)}
+                        />
+                      </ManagementTd>
+                      <ManagementTd>
+                        <Button
+                          buttonTitle="삭제"
+                          width="60px"
+                          height="21px"
+                          borderRadius="5px"
+                          borderColor="#B9B9B9"
+                          fontSize="13px"
+                          lineHeight="19px"
+                          padding="0 0 20px 0"
+                          boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
+                          onClick={() => handleDelete(obj.userID)}
+                        />
+                      </ManagementTd>
+                    </ManagementTr>
+                  );
+                })}
+              </tbody>
+            </ManagementTable>
+          </Wrapper>
+          <Pagination totalItemCount={userManagementData.length} limit={limit} page={page} setPage={setPage} />
+        </>
+      )}
     </>
   );
 }
+const EmptyUser = styled.div`
+  height: 300px;
+  font-family: 'NotoSansKR';
+  font-size: 30px;
+  line-height: 200px;
+  text-align: center;
+`;
 
 const Wrapper = styled.div`
   margin-top: 20px;
@@ -150,6 +163,7 @@ const Wrapper = styled.div`
 `;
 const ManagementTable = styled.table`
   width: 80%;
+  max-width: 800px;
   margin: 40px auto 50px;
   border: 1px solid #b9b9b9;
 `;

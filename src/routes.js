@@ -3,6 +3,7 @@ import OrderManagementPage from 'pages/OrderManagementPage';
 import UserManagementPage from 'pages/UserManagementPage';
 import UserCreate from 'components/UserCreate';
 import UserOrdersManagementPage from 'pages/UserOrderManagementPage';
+import OrderItemManagementPage from 'pages/OrderItemManagementPage';
 
 function Router() {
   return (
@@ -10,6 +11,7 @@ function Router() {
       <BrowserRouter>
         <Routes>
           <Route path="/orderManagement" element={<OrderManagementPage />} />
+          <Route path="/orderItemManagement" element={<OrderItemManagementPage />} />
           <Route path="/userManagement" element={<UserManagementPage />} />
           <Route path="/userCreate" element={<UserCreate />} />
           <Route path="/userOrderManagement" element={<UserOrdersManagementPage />} />
