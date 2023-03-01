@@ -13,7 +13,6 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
   };
 
   const handleEditChange = (e) => {
-    console.log(e.target.value);
     setEdited({
       ...edited,
       [e.target.name]: e.target.value
@@ -31,10 +30,11 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
 
   const handleSubmitEdit = (e) => {
     e.preventDefault();
+    console.log(edited);
     const formData2 = new FormData();
     formData2.append('title', edited.title);
     formData2.append('author', edited.author);
-    formData2.append('category', edited.category._id);
+    formData2.append('category', edited.category);
     formData2.append('file', edited.file);
     formData2.append('price', edited.price);
     formData2.append('salePrice', edited.salePrice);
@@ -61,14 +61,13 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
         </ModalInputContainer>
         <ModalInputContainer>
           category:
-          <ModalInput type="text" name="category" value={category} onChange={handleEditChange} />
-          {/* <SelectContainer name="category" onChange={handleEditChange}>
+          <SelectContainer name="category" onChange={handleEditChange}>
             <option value="">{category}</option>
             <option value="63f2d82b5b2238b907c9c4f6">만화서적</option>
             <option value="63f864cd16e9b53a4265460f">기술서적</option>
             <option value="63f8653a16e9b53a42654620">아동책</option>
             <option value="63f8656a16e9b53a42654627">소설책</option>
-          </SelectContainer> */}
+          </SelectContainer>
         </ModalInputContainer>
         <ModalInputContainer>
           image: <ModalInput type="file" name="file" onChange={handleImage} />
@@ -157,6 +156,8 @@ const ButtonContainer = styled.div`
 `;
 
 const SelectContainer = styled.select`
+  width: 80%;
+
   margin-bottom: 5px;
   height: 30px;
   font-size: 16px;
