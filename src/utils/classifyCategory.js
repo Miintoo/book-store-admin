@@ -9,5 +9,6 @@ export default function classifyCategory(id) {
     case '63f8656a16e9b53a42654627':
       return '소설책';
     default:
+      return '카테고리가 없습니다.';
   }
 }

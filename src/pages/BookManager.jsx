@@ -37,11 +37,12 @@ function BookManager() {
       }
       const booksArray = await Api.get('/books').then((response) => response.data);
       const initBooksData = booksArray.map((book) => {
+        const categoryData = book.category !== null ? book.category._id : '654123';
         return {
           id: book._id,
           title: book.title,
           author: book.author,
-          category: book.category,
+          category: categoryData,
           file: book.imageUrl,
           price: book.price,
           salePrice: book.salePrice,

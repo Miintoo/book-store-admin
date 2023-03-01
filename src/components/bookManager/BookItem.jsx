@@ -3,14 +3,13 @@ import styled from 'styled-components';
 import classifyCategory from 'utils/classifyCategory';
 
 function BookItem({ bookItem, onDelete, onChangeModal }) {
-  console.log(bookItem.category);
   return (
     <>
       <ManagementTr>
         <ManagementTd>{bookItem.title}</ManagementTd>
         <ManagementTd>{bookItem.author}</ManagementTd>
         <ManagementTd>
-          <BookImage src={bookItem.file} alt="" />
+          <BookImage src={bookItem.file} alt="책 이미지 입니다." />
         </ManagementTd>
         <ManagementTd>{bookItem.price}</ManagementTd>
         <ManagementTd>{bookItem.salePrice}</ManagementTd>
@@ -19,14 +18,14 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
         <ManagementTd>{bookItem.condition}</ManagementTd>
         <ManagementTd>{bookItem.publishedDate}</ManagementTd>
         <ManagementTd>{bookItem.publisher}</ManagementTd>
-        <ManagementTd>{classifyCategory(bookItem.category._id)}</ManagementTd>
+        <ManagementTd>{classifyCategory(bookItem.category)}</ManagementTd>
         <ManagementTd>
           <EditButton
             onClick={() => {
               onChangeModal(bookItem);
             }}
           >
-            <EditIcon src="images/changeButton.png" alt="" />
+            <EditIcon src="images/changeButton.png" alt="수정 아이콘" />
           </EditButton>
         </ManagementTd>
         <ManagementTd>
@@ -35,7 +34,7 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
               onDelete(bookItem.id);
             }}
           >
-            <EditIcon src="images/deleteButton.png" alt="" />
+            <EditIcon src="images/deleteButton.png" alt="삭제 아이콘" />
           </EditButtonDelete>
         </ManagementTd>
       </ManagementTr>

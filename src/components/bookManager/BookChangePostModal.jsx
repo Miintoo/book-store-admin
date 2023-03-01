@@ -6,13 +6,14 @@ import classifyCategory from 'utils/classifyCategory';
 function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
   const [edited, setEdited] = useState(selectedData);
   // console.log(selectedData.category);
-  const category = classifyCategory(selectedData.category);
+  const category = classifyCategory(selectedData.category._id);
 
   const handleCancel = () => {
     onCancel();
   };
 
   const handleEditChange = (e) => {
+    console.log(e.target.value);
     setEdited({
       ...edited,
       [e.target.name]: e.target.value
@@ -59,7 +60,15 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
           Author: <ModalInput type="text" name="author" value={edited.author} onChange={handleEditChange} />
         </ModalInputContainer>
         <ModalInputContainer>
-          category: <ModalInput type="text" name="category" value={category} onChange={handleEditChange} />
+          category:
+          <ModalInput type="text" name="category" value={category} onChange={handleEditChange} />
+          {/* <SelectContainer name="category" onChange={handleEditChange}>
+            <option value="">{category}</option>
+            <option value="63f2d82b5b2238b907c9c4f6">만화서적</option>
+            <option value="63f864cd16e9b53a4265460f">기술서적</option>
+            <option value="63f8653a16e9b53a42654620">아동책</option>
+            <option value="63f8656a16e9b53a42654627">소설책</option>
+          </SelectContainer> */}
         </ModalInputContainer>
         <ModalInputContainer>
           image: <ModalInput type="file" name="file" onChange={handleImage} />
@@ -145,4 +154,10 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
   margin-top: 20px;
   gap: 10px;
+`;
+
+const SelectContainer = styled.select`
+  margin-bottom: 5px;
+  height: 30px;
+  font-size: 16px;
 `;
