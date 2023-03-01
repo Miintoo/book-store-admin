@@ -6,6 +6,7 @@ import OrderItemManagementPage from 'pages/OrderItemManagementPage';
 import Nav from 'components/commons/Nav';
 import BookManager from 'pages/BookManager';
 import LoginPage from 'pages/Login';
+import SignUpPage from 'pages/SignUp';
 
 function Router() {
   return (
@@ -15,6 +16,7 @@ function Router() {
         <Routes>
           <Route exact path="/admin" element={<BookManager />} />
           <Route path="/admin/login" element={<LoginPage />} />
+          <Route path="/admin/signUp" element={<SignUpPage />} />
 
           <Route path="/admin/orderManagement" element={<OrderManagementPage />} />
           <Route path="/admin/orderItemManagement" element={<OrderItemManagementPage />} />

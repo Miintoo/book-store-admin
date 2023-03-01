@@ -78,7 +78,7 @@ function LoginPage() {
 
   // 회원가입 버튼 클릭
   const handleSignUpClick = () => {
-    navigate('/signUp');
+    navigate('/admin/signUp');
   };
 
   // 비회원 주문조회 버튼 클릭
