@@ -39,9 +39,7 @@ function BookAddPost({ onSaveData }) {
     });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const handleSubmit = async () => {
     const formData = new FormData();
     formData.append('title', form.title);
     formData.append('author', form.author);
@@ -57,22 +55,6 @@ function BookAddPost({ onSaveData }) {
 
     try {
       await Api.post('/books', formData).then((res) => {
-        // const resData = {
-        //   id: res.data.book._id,
-        //   title: res.data.book.title,
-        //   author: res.data.book.author,
-        //   category: res.data.book.category,
-        //   file: res.data.book.file,
-        //   price: res.data.book.price,
-        //   salePrice: res.data.book.salePrice,
-        //   score: res.data.book.score,
-        //   quantity: res.data.book.quantity,
-        //   condition: res.data.book.condition,
-        //   publishedDate: res.data.book.publishedDate,
-        //   publisher: res.data.book.publisher
-        // };
-        // console.log(resData);
-        console.log(res.data);
         onSaveData(res.data.book);
       });
 
