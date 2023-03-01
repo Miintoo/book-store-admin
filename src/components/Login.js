@@ -10,12 +10,12 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigator = useNavigate();
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const result = await axios.post(`${apiUrl}/auth`, {
         email: email,
-        password,
+        password
       });
 
       console.log('result', result);
@@ -32,7 +32,7 @@ function Login() {
     }
   };
 
-  const inputHandler = e => {
+  const inputHandler = (e) => {
     switch (e.target.name) {
       case 'email':
         setEmail(e.target.value);
@@ -49,22 +49,10 @@ function Login() {
       <h1>로그인</h1>
       <form onSubmit={handleSubmit}>
         <label htmlFor="email">이메일</label>
-        <input
-          id="email"
-          type="text"
-          name="email"
-          value={email}
-          onChange={inputHandler}
-        />
+        <input id="email" type="text" name="email" value={email} onChange={inputHandler} />
         <br />
         <label htmlFor="password">비밀번호</label>
-        <input
-          id="password"
-          type="current-password"
-          name="password"
-          value={password}
-          onChange={inputHandler}
-        />
+        <input id="password" type="current-password" name="password" value={password} onChange={inputHandler} />
         <br />
         <button type="submit">로그인</button>
       </form>

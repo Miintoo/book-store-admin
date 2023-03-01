@@ -10,11 +10,11 @@ function BoardList() {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    axios.get(`${apiUrl}/book/read`).then(res => {
+    axios.get(`${apiUrl}/book/read`).then((res) => {
       setBooks(res.data);
       console.log('res.data', res.data);
     });
-    axios.get(`${apiUrl}/user/read`).then(res => {
+    axios.get(`${apiUrl}/user/read`).then((res) => {
       setUsers(res.data);
     });
   }, []);
@@ -29,8 +29,8 @@ function BoardList() {
         onClick={() => {
           navigate('/books', {
             state: {
-              message: 'create',
-            },
+              message: 'create'
+            }
           });
         }}
       >
@@ -44,8 +44,8 @@ function BoardList() {
         onClick={() => {
           navigate('/books2', {
             state: {
-              message: 'create',
-            },
+              message: 'create'
+            }
           });
         }}
       >
@@ -72,7 +72,7 @@ function BoardList() {
             </tr>
           </thead>
           <tbody>
-            {books.map(book => {
+            {books.map((book) => {
               const {
                 _id: id,
                 title,
@@ -84,7 +84,7 @@ function BoardList() {
                 quantity,
                 condition,
                 publishedDate,
-                publisher,
+                publisher
               } = book;
               return (
                 <tr key={id}>
@@ -106,14 +106,12 @@ function BoardList() {
                       type="button"
                       onClick={() => {
                         console.log('id', id);
-                        axios
-                          .delete(`${apiUrl}/book/delete/${id}`)
-                          .then(res => {
-                            console.log('res', res.data);
-                            axios.get(`${apiUrl}/book/read`).then(result => {
-                              setBooks(result.data);
-                            });
+                        axios.delete(`${apiUrl}/book/delete/${id}`).then((res) => {
+                          console.log('res', res.data);
+                          axios.get(`${apiUrl}/book/read`).then((result) => {
+                            setBooks(result.data);
                           });
+                        });
                       }}
                     >
                       삭제
@@ -134,10 +132,10 @@ function BoardList() {
                               quantity,
                               condition,
                               publishedDate,
-                              publisher,
+                              publisher
                             },
-                            message: 'update',
-                          },
+                            message: 'update'
+                          }
                         });
                       }}
                     >
@@ -146,15 +144,15 @@ function BoardList() {
                     <button
                       type="button"
                       onClick={() => {
-                        setOrders(old => [
+                        setOrders((old) => [
                           ...old,
                           {
                             id,
                             title,
                             image,
                             price,
-                            quantity,
-                          },
+                            quantity
+                          }
                         ]);
                       }}
                     >
@@ -176,8 +174,8 @@ function BoardList() {
         onClick={() => {
           navigate('/users', {
             state: {
-              message: 'create',
-            },
+              message: 'create'
+            }
           });
         }}
       >
@@ -198,16 +196,8 @@ function BoardList() {
           </tr>
         </thead>
         <tbody>
-          {users.map(user => {
-            const {
-              _id: id,
-              name,
-              email,
-              password,
-              phone,
-              address,
-              point,
-            } = user;
+          {users.map((user) => {
+            const { _id: id, name, email, password, phone, address, point } = user;
             return (
               <tr key={id}>
                 <td>{id}</td>
@@ -221,9 +211,9 @@ function BoardList() {
                   <button
                     type="button"
                     onClick={() => {
-                      axios.delete(`${apiUrl}/user/delete/${id}`).then(res => {
+                      axios.delete(`${apiUrl}/user/delete/${id}`).then((res) => {
                         console.log('res', res);
-                        axios.get(`${apiUrl}/user/read`).then(result => {
+                        axios.get(`${apiUrl}/user/read`).then((result) => {
                           setUsers(result.data);
                         });
                       });
@@ -243,10 +233,10 @@ function BoardList() {
                             password,
                             phone,
                             address,
-                            point,
+                            point
                           },
-                          message: 'update',
-                        },
+                          message: 'update'
+                        }
                       });
                     }}
                   >
@@ -262,8 +252,8 @@ function BoardList() {
                           name,
                           email,
                           phone,
-                          address,
-                        }),
+                          address
+                        })
                       );
                     }}
                   >
@@ -281,8 +271,8 @@ function BoardList() {
         onClick={() => {
           navigate('/board/orders', {
             state: {
-              orders,
-            },
+              orders
+            }
           });
         }}
       >
@@ -299,12 +289,7 @@ function BoardList() {
       >
         multer button
       </button>
-      <img
-        src={
-          'http://elice.iptime.org:8080/test/download/image-1677035882116.jpeg'
-        }
-        alt="image"
-      />
+      <img src={'http://elice.iptime.org:8080/test/download/image-1677035882116.jpeg'} alt="image" />
     </div>
   );
 }

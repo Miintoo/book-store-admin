@@ -45,7 +45,7 @@ function BookManager() {
     }
   }, []);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
 
@@ -80,10 +80,10 @@ function BookManager() {
       await axios
         .post(`${apiUrl}/book/create`, formData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        .then(res => {
+        .then((res) => {
           console.log('result', res.data);
           setMessage('글이 등록되었습니다.');
         });
@@ -91,10 +91,10 @@ function BookManager() {
       await axios
         .put(`${apiUrl}/book/update`, formDataModified, {
           headers: {
-            'Content-Type': 'multipart/form-data',
-          },
+            'Content-Type': 'multipart/form-data'
+          }
         })
-        .then(res => {
+        .then((res) => {
           console.log('result', res);
           setMessage('글이 수정되었습니다.');
           navigate('/board');
@@ -102,10 +102,10 @@ function BookManager() {
     }
   };
 
-  const encodeFileToBase64 = fileBlob => {
+  const encodeFileToBase64 = (fileBlob) => {
     const reader = new FileReader();
     reader.readAsDataURL(fileBlob);
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       reader.onload = () => {
         console.log('reader.result', reader.result);
         setImage(reader.result);
@@ -113,7 +113,7 @@ function BookManager() {
       };
     });
   };
-  const inputHandler = e => {
+  const inputHandler = (e) => {
     switch (e.target.name) {
       case 'title':
         setTitle(e.target.value);
@@ -158,31 +158,13 @@ function BookManager() {
       <h1>서적 등록하기</h1>
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <label htmlFor="title">서적명</label>
-        <input
-          id="title"
-          type="text"
-          name="title"
-          value={title}
-          onChange={inputHandler}
-        />
+        <input id="title" type="text" name="title" value={title} onChange={inputHandler} />
         <br />
         <label htmlFor="author">작가</label>
-        <input
-          id="author"
-          type="text"
-          name="author"
-          value={author}
-          onChange={inputHandler}
-        />
+        <input id="author" type="text" name="author" value={author} onChange={inputHandler} />
         <br />
         <label htmlFor="category">분류</label>
-        <input
-          id="category"
-          type="text"
-          name="category"
-          value={category}
-          onChange={inputHandler}
-        />
+        <input id="category" type="text" name="category" value={category} onChange={inputHandler} />
         <br />
 
         {/* <label>책내용</label>
@@ -200,67 +182,26 @@ function BookManager() {
         <img src={image} alt="imagefor" />
         <br />
         <label htmlFor="price">가격</label>
-        <input
-          id="price"
-          type="number"
-          name="price"
-          value={price}
-          onChange={inputHandler}
-        />
+        <input id="price" type="number" name="price" value={price} onChange={inputHandler} />
         <br />
         <label htmlFor="salePrice">할인가격</label>
-        <input
-          id="salePrice"
-          type="number"
-          name="salePrice"
-          value={salePrice}
-          onChange={inputHandler}
-        />
+        <input id="salePrice" type="number" name="salePrice" value={salePrice} onChange={inputHandler} />
         <br />
         <label htmlFor="score">추천점수</label>
-        <input
-          id="score"
-          type="number"
-          name="score"
-          value={score}
-          onChange={inputHandler}
-        />
+        <input id="score" type="number" name="score" value={score} onChange={inputHandler} />
         <br />
         <label htmlFor="quantity">재고량</label>
-        <input
-          id="quantity"
-          type="number"
-          name="quantity"
-          value={quantity}
-          onChange={inputHandler}
-        />
+        <input id="quantity" type="number" name="quantity" value={quantity} onChange={inputHandler} />
         <br />
         <label htmlFor="condition">서적상태</label>
-        <input
-          id="condition"
-          type="text"
-          name="condition"
-          value={condition}
-          onChange={inputHandler}
-        />
+        <input id="condition" type="text" name="condition" value={condition} onChange={inputHandler} />
         <br />
         <label htmlFor="publishedDate">발행일</label>
         <p>{publishedDate}</p>
-        <input
-          id="publishedDate"
-          type="date"
-          name="publishedDate"
-          onChange={inputHandler}
-        />
+        <input id="publishedDate" type="date" name="publishedDate" onChange={inputHandler} />
         <br />
         <label htmlFor="publisher">출판사</label>
-        <input
-          id="publisher"
-          type="text"
-          name="publisher"
-          value={publisher}
-          onChange={inputHandler}
-        />
+        <input id="publisher" type="text" name="publisher" value={publisher} onChange={inputHandler} />
         <br />
 
         {status === 'create' ? (
