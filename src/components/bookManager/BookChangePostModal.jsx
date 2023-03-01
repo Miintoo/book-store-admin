@@ -82,7 +82,7 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
           score: <ModalInput type="text" name="score" value={edited.score} onChange={handleEditChange} />
         </ModalInputContainer>
         <ModalInputContainer>
-          quantity: <ModalInput type="text" name="quantity" value={edited.quantity} onChange={handleEditChange} />
+          stock: <ModalInput type="text" name="stock" value={edited.stock} onChange={handleEditChange} />
         </ModalInputContainer>
         <ModalInputContainer>
           condition: <ModalInput type="text" name="condition" value={edited.condition} onChange={handleEditChange} />

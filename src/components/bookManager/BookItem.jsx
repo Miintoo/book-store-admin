@@ -14,7 +14,7 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
         <ManagementTd>{bookItem.price}</ManagementTd>
         <ManagementTd>{bookItem.salePrice}</ManagementTd>
         <ManagementTd>{bookItem.score}</ManagementTd>
-        <ManagementTd>{bookItem.quantity}</ManagementTd>
+        <ManagementTd>{bookItem.stock}</ManagementTd>
         <ManagementTd>{bookItem.condition}</ManagementTd>
         <ManagementTd>{bookItem.publishedDate}</ManagementTd>
         <ManagementTd>{bookItem.publisher}</ManagementTd>

@@ -11,7 +11,7 @@ function BookAddPost({ onSaveData }) {
     price: '',
     salePrice: '',
     score: '',
-    quantity: '',
+    stock: '',
     condition: '',
     publishedDate: '',
     publisher: '',
@@ -47,7 +47,7 @@ function BookAddPost({ onSaveData }) {
     formData.append('price', form.price);
     formData.append('salePrice', form.salePrice);
     formData.append('score', form.score);
-    formData.append('quantity', form.quantity);
+    formData.append('stock', form.stock);
     formData.append('condition', form.condition);
     formData.append('publishedDate', form.publishedDate);
     formData.append('publisher', form.publisher);
@@ -55,6 +55,7 @@ function BookAddPost({ onSaveData }) {
 
     try {
       await Api.post('/books', formData).then((res) => {
+        console.log(res.data);
         onSaveData(res.data.book);
       });
 
@@ -66,7 +67,7 @@ function BookAddPost({ onSaveData }) {
         price: '',
         salePrice: '',
         score: '',
-        quantity: '',
+        stock: '',
         condition: '',
         publishedDate: '',
         publisher: ''
@@ -122,7 +123,7 @@ function BookAddPost({ onSaveData }) {
           </InputChildContainer>
           <InputChildContainer>
             <AddLabel htmlFor="title">재고량</AddLabel>
-            <AddInput type="text" name="quantity" value={form.quantity} onChange={handleChange} />
+            <AddInput type="text" name="stock" value={form.stock} onChange={handleChange} />
           </InputChildContainer>
         </InputContainer>
         <InputContainer>

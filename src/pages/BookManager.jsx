@@ -35,7 +35,7 @@ function BookManager() {
       if (!classifyAdmin()) {
         return navigate('/admin/login');
       }
-      const booksArray = await Api.get('/books').then((response) => response.data);
+      const booksArray = await Api.get('/books/all').then((response) => response.data);
       const initBooksData = booksArray.map((book) => {
         const categoryData = book.category !== null ? book.category._id : '654123';
         return {
@@ -47,7 +47,7 @@ function BookManager() {
           price: book.price,
           salePrice: book.salePrice,
           score: book.score,
-          quantity: book.quantity,
+          stock: book.stock,
           condition: book.condition,
           publishedDate: book.publishedDate,
           publisher: book.publisher
@@ -89,7 +89,7 @@ function BookManager() {
                 price: data.price,
                 salePrice: data.salePrice,
                 score: data.score,
-                quantity: data.quantity,
+                stock: data.stock,
                 condition: data.condition,
                 publishedDate: data.publishedDate,
                 publisher: data.publisher
@@ -110,7 +110,7 @@ function BookManager() {
             price: data.price,
             salePrice: data.salePrice,
             score: data.score,
-            quantity: data.quantity,
+            stock: data.stock,
             condition: data.condition,
             publishedDate: data.publishedDate,
             publisher: data.publisher
