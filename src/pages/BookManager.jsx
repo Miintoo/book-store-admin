@@ -7,6 +7,7 @@ import PageTitle from 'components/commons/pageTitle/PageTitle';
 import BookItem from 'components/bookManager/BookItem';
 import BookAddPost from 'components/bookManager/BookAddPost';
 import BookChangePostModal from 'components/bookManager/BookChangePostModal';
+import Nav from 'components/commons/Nav';
 
 // id: '',
 // title: '',
@@ -171,6 +172,7 @@ function BookManager() {
 
   return (
     <>
+      <Nav />
       <div>
         <PageTitle title="책 정보 리스트" />
         <div>

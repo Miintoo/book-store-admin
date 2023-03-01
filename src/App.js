@@ -20,7 +20,7 @@ function App() {
           {/* <Route path="/board" element={<BoardList />}> */}
           {/* <Route path="orders" element={<OrderManager />} /> */}
           {/* <Route path="/books2" element={<BookManager2 />} /> */}
-          <Route path="/books" element={<BookManager />} />
+          <Route path="/" element={<BookManager />} />
           {/* <Route path="/users" element={<UserManager />} /> */}
         </Routes>
       </BrowserRouter>
