@@ -13,7 +13,7 @@ function Router() {
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/admin" element={<BookManager />} />
+          <Route exact path="/admin" element={<BookManager />} />
           <Route path="/admin/login" element={<LoginPage />} />
 
           <Route path="/admin/orderManagement" element={<OrderManagementPage />} />

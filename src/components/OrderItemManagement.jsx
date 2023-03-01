@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
 import PageTitle from './commons/pageTitle/PageTitle';
 import Pagination from './Pagination';
 import styled from 'styled-components';
+import classifyAdmin from 'utils/classifyAdmin';
 
 function OrderItemManagement() {
   const [orderItems, setOrderItems] = useState([]);
@@ -12,11 +13,15 @@ function OrderItemManagement() {
   const limit = 10;
   const offset = (page - 1) * limit;
   const location = useLocation();
+  const navigate = useNavigate();
 
   const orderID = location.state.orderID;
   console.log(orderItems);
 
   useEffect(() => {
+    if (!classifyAdmin()) {
+      return navigate('/admin/login');
+    }
     const fetchOrderItems = async () => {
       const response = await Api.get(`/orders/${orderID}`);
       console.log(response.data.result[0].orderItemList);

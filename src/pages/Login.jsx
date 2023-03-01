@@ -33,7 +33,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const baseURL = 'http://elice.iptime.org:5500';
+    const baseURL = 'http://elice.iptime.org:8080';
 
     if (!user.email) {
       alert('아이디를 입력 해주세요.');
@@ -60,9 +60,16 @@ function LoginPage() {
       .post(`${baseURL}/auth`, user)
       .then((response) => {
         const accessToken = response.data;
-        localStorage.setItem('Auth', accessToken);
+        const role = response.data.userRole;
 
-        navigate('/admin');
+        if (role === 'admin') {
+          localStorage.setItem('Auth', accessToken);
+          localStorage.setItem('Role', role);
+          navigate('/admin');
+        } else {
+          navigate('/admin/login');
+          alert('관리자가 아닙니다.');
+        }
       })
       .catch((error) => {
         // console.log(error);

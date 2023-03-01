@@ -5,6 +5,7 @@ import Button from './commons/button/Button';
 import PageTitle from './commons/pageTitle/PageTitle';
 import Pagination from './Pagination';
 import { useNavigate } from 'react-router-dom';
+import classifyAdmin from 'utils/classifyAdmin';
 
 function UserManagement() {
   const [userData, setUserData] = useState([]);
@@ -14,8 +15,12 @@ function UserManagement() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (!classifyAdmin()) {
+      return navigate('/admin/login');
+    }
     const getUserData = async () => {
       const response = await Api.get('/users');
+      console.log(response);
       // const newUserData = response.data.filter((user) => user.name !== 'noMember');
       // setUserData(newUserData);
       setUserData(response.data);

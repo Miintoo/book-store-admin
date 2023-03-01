@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
+import classifyAdmin from 'utils/classifyAdmin';
 // 중복 스타일적용
 
 export default function Nav() {
@@ -8,7 +9,16 @@ export default function Nav() {
 
   return (
     <NavBarClass>
-      <div onClick={() => navigate('/admin')}>
+      <div
+        onClick={() => {
+          console.log(classifyAdmin());
+          if (!classifyAdmin()) {
+            alert('로그인을 하세요!');
+            return;
+          }
+          navigate('/admin');
+        }}
+      >
         <LogoStyle>
           <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
         </LogoStyle>
@@ -16,9 +26,42 @@ export default function Nav() {
 
       <MiddleNavBar>
         <CategoryContainer>
-          <Category onClick={() => navigate('/admin')}>책관리</Category>
-          <Category onClick={() => navigate('/admin/orderManagement')}>유저관리</Category>
-          <Category onClick={() => navigate('/admin/userManagement')}>주문관리</Category>
+          <Category
+            onClick={() => {
+              if (!classifyAdmin()) {
+                alert('로그인을 하세요!');
+
+                return;
+              }
+              navigate('/admin');
+            }}
+          >
+            책관리
+          </Category>
+          <Category
+            onClick={() => {
+              if (!classifyAdmin()) {
+                alert('로그인을 하세요!');
+
+                return;
+              }
+              navigate('/admin/userManagement');
+            }}
+          >
+            유저관리
+          </Category>
+          <Category
+            onClick={() => {
+              if (!classifyAdmin()) {
+                alert('로그인을 하세요!');
+
+                return;
+              }
+              navigate('/admin/orderManagement');
+            }}
+          >
+            주문관리
+          </Category>
         </CategoryContainer>
       </MiddleNavBar>
 
@@ -34,6 +77,7 @@ export default function Nav() {
               type="button"
               onClick={() => {
                 localStorage.removeItem('Auth');
+                localStorage.removeItem('Role');
                 navigate('/admin/login');
               }}
             >

@@ -6,7 +6,8 @@ import PageTitle from 'components/commons/pageTitle/PageTitle';
 import BookItem from 'components/bookManager/BookItem';
 import BookAddPost from 'components/bookManager/BookAddPost';
 import BookChangePostModal from 'components/bookManager/BookChangePostModal';
-
+import classifyAdmin from 'utils/classifyAdmin';
+import { useNavigate } from 'react-router-dom';
 // id: '',
 // title: '',
 // author: '',
@@ -23,12 +24,17 @@ import BookChangePostModal from 'components/bookManager/BookChangePostModal';
 // status: ''
 
 function BookManager() {
+  const navigate = useNavigate();
+
   const [modal, setModal] = useState(false);
   const [books, setBooks] = useState([]);
   const [selected, setSelected] = useState('');
 
   useEffect(() => {
     const getBooks = async () => {
+      if (!classifyAdmin()) {
+        return navigate('/admin/login');
+      }
       const booksArray = await Api.get('/books').then((response) => response.data);
       const initBooksData = booksArray.map((book) => {
         return {

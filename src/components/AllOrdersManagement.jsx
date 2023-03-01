@@ -2,11 +2,17 @@ import React, { useEffect, useState } from 'react';
 import Api from 'utils/api';
 import { format } from 'date-fns';
 import OrderManagementTemplate from './OrderManagementTemplate';
+import { useNavigate } from 'react-router-dom';
+import classifyAdmin from 'utils/classifyAdmin';
 
 function allOrdersManagement() {
   const [orderData, setOrderData] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    if (!classifyAdmin()) {
+      return navigate('/admin/login');
+    }
     const getOrderData = async () => {
       const response = await Api.get('/orders');
       setOrderData(response.data);
