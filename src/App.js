@@ -1,8 +1,8 @@
-import './App.css';
+import 'styles/global.css';
 import React from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import BoardList from './components/BoardList';
-import BookManager from './components/BookManager';
+import BookManager from 'pages/BookManager';
 import UserManager from './components/UserManager';
 import OrderManager from './components/OrderManager';
 import BookManager2 from './components/BookManager2';
@@ -15,14 +15,13 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Login />} /> */}
 
-          <Route path="/board" element={<BoardList />}>
-            <Route path="orders" element={<OrderManager />} />
-          </Route>
-          <Route path="/books2" element={<BookManager2 />} />
+          {/* <Route path="/board" element={<BoardList />}> */}
+          {/* <Route path="orders" element={<OrderManager />} /> */}
+          {/* <Route path="/books2" element={<BookManager2 />} /> */}
           <Route path="/books" element={<BookManager />} />
-          <Route path="/users" element={<UserManager />} />
+          {/* <Route path="/users" element={<UserManager />} /> */}
         </Routes>
       </BrowserRouter>
     </div>
