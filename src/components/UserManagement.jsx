@@ -36,10 +36,6 @@ function UserManagement() {
   });
   console.log('userManagementData', userManagementData);
 
-  const handleCreateUser = () => {
-    navigate('/userCreate');
-  };
-
   const handleCheckOrderList = async (userID) => {
     console.log(userID);
     navigate('/userOrderManagement', {
@@ -73,18 +69,6 @@ function UserManagement() {
       ) : (
         <>
           <Wrapper>
-            <Button
-              buttonTitle="유저 생성"
-              width="60px"
-              height="21px"
-              borderRadius="5px"
-              borderColor="#B9B9B9"
-              fontSize="13px"
-              lineHeight="19px"
-              padding="0 0 20px 0"
-              boxShadow="0px 1px 1px rgba(0, 0, 0, 0.25);"
-              onClick={() => handleCreateUser()}
-            />
             <ManagementTable>
               <thead>
                 <ManagementLabelSection>
