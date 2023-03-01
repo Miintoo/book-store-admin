@@ -5,11 +5,22 @@ import Button from './commons/button/Button';
 import PageTitle from './commons/pageTitle/PageTitle';
 import OrderStatusDropDown from './OrderStatusDropDown';
 import Pagination from './Pagination';
+import { useNavigate } from 'react-router-dom';
 
 function OrderManagementTemplate({ orderManagementData }) {
   const [page, setPage] = useState(1);
   const limit = 10;
   const offset = (page - 1) * limit;
+  const navigate = useNavigate();
+
+  const handleOrderItem = (orderID) => {
+    console.log(orderID);
+    navigate('/orderItemManagement', {
+      state: {
+        orderID: orderID
+      }
+    });
+  };
 
   const handleDelete = async (orderID) => {
     console.log(orderID);
@@ -52,13 +63,21 @@ function OrderManagementTemplate({ orderManagementData }) {
                   <ManagementTr key={obj.orderID}>
                     {Object.entries(obj).map(([key, value]) => {
                       return (
-                        <ManagementTd key={key}>
-                          {key === 'orderStatus' ? (
-                            <OrderStatusDropDown defaultValue={value} orderID={obj.orderID} />
+                        <>
+                          {key === 'orderItem' ? (
+                            <ManagementTd key={key} onClick={() => handleOrderItem(obj.orderID)}>
+                              {value}
+                            </ManagementTd>
                           ) : (
-                            value
+                            <ManagementTd key={key}>
+                              {key === 'orderStatus' ? (
+                                <OrderStatusDropDown defaultValue={value} orderID={obj.orderID} />
+                              ) : (
+                                value
+                              )}
+                            </ManagementTd>
                           )}
-                        </ManagementTd>
+                        </>
                       );
                     })}
                     <ManagementTd>
@@ -97,6 +116,7 @@ const EmptyOrder = styled.div`
 
 const ManagementTable = styled.table`
   width: 80%;
+  max-width: 800px;
   margin: 40px auto 50px;
   border: 1px solid #b9b9b9;
 `;
@@ -133,10 +153,10 @@ const ManagementTh = styled.th`
     width: 14%;
   }
   &:nth-child(6) {
-    width: 10%;
+    width: 14%;
   }
   &:nth-child(7) {
-    width: 7%;
+    width: 10%;
   }
 `;
 
@@ -155,6 +175,11 @@ const ManagementTd = styled.td`
   &:nth-child(7) {
     width: 10%;
     padding: 3px;
+  }
+  &:nth-child(4) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    cursor: pointer;
   }
 `;
 
