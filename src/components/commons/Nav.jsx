@@ -1,13 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { NavLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 // 중복 스타일적용
 
 export default function Nav() {
   const navigate = useNavigate();
-  const [category, setCategory] = useState();
-  const [loading, setLoading] = useState(false);
 
   return (
     <NavBarClass>

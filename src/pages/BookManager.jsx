@@ -1,13 +1,11 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
 import PageTitle from 'components/commons/pageTitle/PageTitle';
 import BookItem from 'components/bookManager/BookItem';
 import BookAddPost from 'components/bookManager/BookAddPost';
 import BookChangePostModal from 'components/bookManager/BookChangePostModal';
-import Nav from 'components/commons/Nav';
 
 // id: '',
 // title: '',
@@ -25,7 +23,6 @@ import Nav from 'components/commons/Nav';
 // status: ''
 
 function BookManager() {
-  const navigate = useNavigate();
   const [modal, setModal] = useState(false);
   const [books, setBooks] = useState([]);
   const [selected, setSelected] = useState('');
@@ -172,7 +169,6 @@ function BookManager() {
 
   return (
     <>
-      <Nav />
       <div>
         <PageTitle title="책 정보 리스트" />
         <div>
