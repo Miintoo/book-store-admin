@@ -4,6 +4,8 @@ import UserManagementPage from 'pages/UserManagementPage';
 import UserOrdersManagementPage from 'pages/UserOrderManagementPage';
 import OrderItemManagementPage from 'pages/OrderItemManagementPage';
 import Nav from 'components/commons/Nav';
+import BookManager from 'pages/BookManager';
+import LoginPage from 'pages/Login';
 
 function Router() {
   return (
@@ -11,10 +13,13 @@ function Router() {
       <BrowserRouter>
         <Nav />
         <Routes>
-          <Route path="/orderManagement" element={<OrderManagementPage />} />
-          <Route path="/orderItemManagement" element={<OrderItemManagementPage />} />
-          <Route path="/userManagement" element={<UserManagementPage />} />
-          <Route path="/userOrderManagement" element={<UserOrdersManagementPage />} />
+          <Route path="/admin" element={<BookManager />} />
+          <Route path="/admin/login" element={<LoginPage />} />
+
+          <Route path="/admin/orderManagement" element={<OrderManagementPage />} />
+          <Route path="/admin/orderItemManagement" element={<OrderItemManagementPage />} />
+          <Route path="/admin/userManagement" element={<UserManagementPage />} />
+          <Route path="/admin/userOrderManagement" element={<UserOrdersManagementPage />} />
         </Routes>
       </BrowserRouter>
     </div>
