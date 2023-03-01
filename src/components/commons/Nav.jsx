@@ -62,6 +62,19 @@ export default function Nav() {
           >
             주문관리
           </Category>
+
+          <Category
+            onClick={() => {
+              if (!classifyAdmin()) {
+                alert('로그인을 하세요!');
+
+                return;
+              }
+              navigate('/admin/categoryManagement');
+            }}
+          >
+            카테고리 관리
+          </Category>
         </CategoryContainer>
       </MiddleNavBar>
 

@@ -7,6 +7,7 @@ import Nav from 'components/commons/Nav';
 import BookManager from 'pages/BookManager';
 import LoginPage from 'pages/Login';
 import SignUpPage from 'pages/SignUp';
+import CategoryManagementPage from 'pages/CategoryManagementPage';
 
 function Router() {
   return (
@@ -22,6 +23,7 @@ function Router() {
           <Route path="/admin/orderItemManagement" element={<OrderItemManagementPage />} />
           <Route path="/admin/userManagement" element={<UserManagementPage />} />
           <Route path="/admin/userOrderManagement" element={<UserOrdersManagementPage />} />
+          <Route path="/admin/categoryManagement" element={<CategoryManagementPage />} />
         </Routes>
       </BrowserRouter>
     </div>
