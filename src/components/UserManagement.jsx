@@ -43,7 +43,7 @@ function UserManagement() {
 
   const handleCheckOrderList = async (userID) => {
     console.log(userID);
-    navigate('/userOrderManagement', {
+    navigate('/admin/userOrderManagement', {
       state: {
         userID: userID
       }

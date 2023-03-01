@@ -15,7 +15,7 @@ function OrderManagementTemplate({ orderManagementData }) {
 
   const handleOrderItem = (orderID) => {
     console.log(orderID);
-    navigate('/orderItemManagement', {
+    navigate('/admin/orderItemManagement', {
       state: {
         orderID: orderID
       }
