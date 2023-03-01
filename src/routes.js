@@ -4,11 +4,13 @@ import UserManagementPage from 'pages/UserManagementPage';
 import UserCreate from 'components/UserCreate';
 import UserOrdersManagementPage from 'pages/UserOrderManagementPage';
 import OrderItemManagementPage from 'pages/OrderItemManagementPage';
+import Nav from 'components/commons/Nav';
 
 function Router() {
   return (
     <div className="routes">
       <BrowserRouter>
+        <Nav />
         <Routes>
           <Route path="/orderManagement" element={<OrderManagementPage />} />
           <Route path="/orderItemManagement" element={<OrderItemManagementPage />} />
