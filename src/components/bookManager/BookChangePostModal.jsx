@@ -5,7 +5,6 @@ import classifyCategory from 'utils/classifyCategory';
 
 function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
   const [edited, setEdited] = useState(selectedData);
-  // console.log(selectedData.category);
   const category = classifyCategory(selectedData.category._id);
 
   const handleCancel = () => {
@@ -30,7 +29,6 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
 
   const handleSubmitEdit = (e) => {
     e.preventDefault();
-    console.log(edited);
     const formData2 = new FormData();
     formData2.append('title', edited.title);
     formData2.append('author', edited.author);
@@ -39,10 +37,11 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
     formData2.append('price', edited.price);
     formData2.append('salePrice', edited.salePrice);
     formData2.append('score', edited.score);
-    formData2.append('quantity', edited.quantity);
+    formData2.append('quantity', edited.stock);
     formData2.append('condition', edited.condition);
     formData2.append('publishedDate', edited.publishedDate);
     formData2.append('publisher', edited.publisher);
+
     onEditSubmit(formData2, edited);
   };
 

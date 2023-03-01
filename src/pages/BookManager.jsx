@@ -75,13 +75,13 @@ function BookManager() {
   }, []);
 
   const handleSave = (data) => {
-    const isInclude = books.filter((book) => book.id === data._id);
+    const isInclude = books.filter((book) => book.id === data.id);
     if (isInclude.length !== 0) {
       setBooks(
         books.map((book) =>
-          book.id === data._id
+          book.id === data.id
             ? {
-                id: data._id,
+                id: data.id,
                 title: data.title,
                 author: data.author,
                 category: data.category,
@@ -102,7 +102,7 @@ function BookManager() {
         return [
           ...prev,
           {
-            id: data._id,
+            id: data.id,
             title: data.title,
             author: data.author,
             category: data.category,
@@ -131,25 +131,15 @@ function BookManager() {
   };
 
   const handleEdit = async (formData2, item) => {
-    // for (let a of formData2.entries()) {
-    //   console.log(a[0], a[1]);
-    // }
-    console.log(item.id);
+    for (let a of formData2.entries()) {
+      console.log(a[0], a[1]);
+    }
     try {
-      await Api.put(
-        '/books',
-        {
-          params: {
-            bookID: item.id
-          }
-        },
-        {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        },
-        formData2
-      ).then((res) => console.log(res));
+      await Api.put(`/books?bookID=${item.id}`, formData2, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
       setModal((prev) => !prev);
       handleSave(item);
     } catch (e) {
