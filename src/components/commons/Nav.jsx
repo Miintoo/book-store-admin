@@ -8,29 +8,25 @@ export default function Nav() {
 
   return (
     <NavBarClass>
-      <div>
-        <LogoStyle to="/">
+      <div onClick={() => navigate('/admin')}>
+        <LogoStyle>
           <img src={process.env.PUBLIC_URL + '/images/logo.png'} alt="" />
         </LogoStyle>
       </div>
 
       <MiddleNavBar>
         <CategoryContainer>
-          <Category onClick={() => navigate('/')}>책관리</Category>
-          <Category>유저관리</Category>
-          <Category>주문관리</Category>
+          <Category onClick={() => navigate('/admin')}>책관리</Category>
+          <Category onClick={() => navigate('/admin/orderManagement')}>유저관리</Category>
+          <Category onClick={() => navigate('/admin/userManagement')}>주문관리</Category>
         </CategoryContainer>
       </MiddleNavBar>
 
       <EndClass>
-        <EndDiv onClick={() => navigate('/')}>
-          <CartNavBar to="/">
-            <IconSize src={process.env.PUBLIC_URL + '/images/navBarShoppingCart.png'} alt="cart" />
-          </CartNavBar>
-        </EndDiv>
+        <EndDiv onClick={() => navigate('/admin')}></EndDiv>
         <EndDiv>
           {!localStorage.getItem('Auth') ? (
-            <LoginButton type="button" onClick={() => navigate('/login')}>
+            <LoginButton type="button" onClick={() => navigate('/admin/login')}>
               로그인
             </LoginButton>
           ) : (
@@ -38,7 +34,7 @@ export default function Nav() {
               type="button"
               onClick={() => {
                 localStorage.removeItem('Auth');
-                navigate('/');
+                navigate('/admin/login');
               }}
             >
               로그아웃
@@ -46,7 +42,9 @@ export default function Nav() {
           )}
         </EndDiv>
         <EndDiv>
-          <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
+          {localStorage.getItem('Auth') && (
+            <MyEliceSize src={process.env.PUBLIC_URL + '/images/navBarMyElice.png'} alt="mypage" id="mypage" />
+          )}
         </EndDiv>
       </EndClass>
     </NavBarClass>
@@ -56,8 +54,8 @@ export default function Nav() {
 const NavBarClass = styled.div`
   display: flex;
   align-items: center;
-  justify-content: space-around;
   margin-top: 6px;
+  padding-right: 25px;
   padding-bottom: 6px;
   background-color: #ffffff;
   border-radius: 4px;
@@ -98,16 +96,10 @@ const MiddleNavBar = styled.div`
   width: 70%;
 `;
 
-const MiddleSpan = styled.div`
-  width: 100%;
-  padding: 2%;
-  text-align: center;
-`;
-
 const EndClass = styled.div`
   display: flex;
   align-items: center;
-  width: 15%;
+  width: 10%;
   height: 100%;
 `;
 
@@ -124,6 +116,8 @@ const CartNavBar = styled(NavLink)`
 `;
 
 const LoginButton = styled.button`
+  width: 80px;
+  height: 30px;
   background-color: #edeafc;
   border-radius: 18px;
 `;
@@ -133,9 +127,9 @@ const LoginButton = styled.button`
 //   height: 100%;
 // `;
 
-const IconSize = styled.img`
-  width: 2vw;
-  height: 3.5vh;
+const NonLoginSize = styled.img`
+  width: 2.8vw;
+  height: 4vh;
 `;
 
 const MyEliceSize = styled.img`
