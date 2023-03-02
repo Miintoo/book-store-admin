@@ -177,7 +177,7 @@ function SignUpPage() {
   };
 
   const handleSignUp = async () => {
-    const baseURL = 'http://elice.iptime.org:8080';
+    const baseURL = 'http://elice.iptime.org:8080/api';
     if (
       warningEmail.visible ||
       warningName.visible ||

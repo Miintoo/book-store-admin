@@ -6,6 +6,8 @@ import InputBox from '../components/commons/inputBox/InputBox';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+// 유진님 저녁 드셨나요?
+
 function LoginPage() {
   const navigate = useNavigate();
   const [user, setUser] = useState({
