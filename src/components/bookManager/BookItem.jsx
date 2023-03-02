@@ -68,7 +68,7 @@ const BookImage = styled.img`
 
 const EditButton = styled.button`
   padding: 5px 15px;
-  border-right: 1px solid #b9b9b9;
+  border-right: none;
   border-top: none;
   border-left: none;
   border-bottom: none;
