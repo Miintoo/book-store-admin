@@ -52,6 +52,7 @@ function BookAddPost({ onSaveData }) {
 
     try {
       await Api.post('/books', formData).then((res) => {
+        location.reload();
         onSaveData(res.data.book);
       });
 
@@ -68,7 +69,6 @@ function BookAddPost({ onSaveData }) {
         publishedDate: '',
         publisher: ''
       });
-      location.reload();
     } catch (e) {
       throw new Error('서버에서 책 데이터 추가를 실패했습니다.');
     }

@@ -34,7 +34,7 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
               onDelete(bookItem.id);
             }}
           >
-            <EditIcon src="images/deleteButton.png" alt="삭제 아이콘" />
+            <EditIcon src="/images/deleteButton.png" alt="삭제 아이콘" />
           </EditButtonDelete>
         </ManagementTd>
       </ManagementTr>
