@@ -11,8 +11,8 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
         <ManagementTd>
           <BookImage src={bookItem.file} alt="책 이미지 입니다." />
         </ManagementTd>
-        <ManagementTd>{bookItem.price}</ManagementTd>
-        <ManagementTd>{bookItem.salePrice}</ManagementTd>
+        <ManagementTd>{bookItem.price}원</ManagementTd>
+        <ManagementTd>{bookItem.salePrice}원</ManagementTd>
         <ManagementTd>{bookItem.score}</ManagementTd>
         <ManagementTd>{bookItem.stock}</ManagementTd>
         <ManagementTd>{bookItem.condition}</ManagementTd>

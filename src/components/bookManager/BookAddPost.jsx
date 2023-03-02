@@ -26,10 +26,6 @@ function BookAddPost({ onSaveData }) {
     });
   };
 
-  // const handleSelect = (e) => {
-  //   console.log(e.target.value);
-  // };
-
   const handleImage = (e) => {
     const name = e.target.name;
     const value = e.target.files[0];
@@ -39,7 +35,8 @@ function BookAddPost({ onSaveData }) {
     });
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     const formData = new FormData();
     formData.append('title', form.title);
     formData.append('author', form.author);
@@ -55,7 +52,6 @@ function BookAddPost({ onSaveData }) {
 
     try {
       await Api.post('/books', formData).then((res) => {
-        console.log(res.data);
         onSaveData(res.data.book);
       });
 
@@ -72,6 +68,7 @@ function BookAddPost({ onSaveData }) {
         publishedDate: '',
         publisher: ''
       });
+      location.reload();
     } catch (e) {
       throw new Error('서버에서 책 데이터 추가를 실패했습니다.');
     }
