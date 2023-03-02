@@ -122,6 +122,8 @@ function CategoryManagement() {
                 <ManagementTh>ID</ManagementTh>
                 <ManagementTh>카테고리 명</ManagementTh>
                 <ManagementTh>카테고리 설명</ManagementTh>
+                <ManagementTh>수정</ManagementTh>
+                <ManagementTh>삭제</ManagementTh>
               </ManagementLabelSection>
             </thead>
             <tbody>
@@ -176,36 +178,18 @@ const ManagementTh = styled.th`
   vertical-align: middle;
   line-height: 130%;
   &:first-child {
-    width: 10%;
+    width: 20%;
   }
   &:nth-child(2) {
     width: 10%;
   }
   &:nth-child(3) {
-    width: 10%;
+    width: 70%;
   }
   &:nth-child(4) {
     width: 10%;
   }
   &:nth-child(5) {
-    width: 10%;
-  }
-  &:nth-child(6) {
-    width: 8%;
-  }
-  &:nth-child(7) {
-    width: 6%;
-  }
-  &:nth-child(8) {
-    width: 6%;
-  }
-  &:nth-child(9) {
-    width: 10%;
-  }
-  &:nth-child(10) {
-    width: 10%;
-  }
-  &:nth-child(11) {
     width: 10%;
   }
 `;

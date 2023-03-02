@@ -24,7 +24,7 @@ function CategoryItem({ categoryItem, onDelete, onChangeModal }) {
               onDelete(categoryItem.id);
             }}
           >
-            <EditIcon src="images/deleteButton.png" alt="삭제 아이콘" />
+            <EditIcon src="/images/deleteButton.png" alt="삭제" />
           </EditButtonDelete>
         </ManagementTd>
       </ManagementTr>
@@ -48,9 +48,9 @@ const ManagementTd = styled.td`
 `;
 const EditButton = styled.button`
   padding: 5px 15px;
-  border-right: 1px solid #b9b9b9;
   border-top: none;
   border-left: none;
+  border-right: none;
   border-bottom: none;
 
   background-color: white;

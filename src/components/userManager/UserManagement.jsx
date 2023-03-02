@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Api from 'utils/api';
 import styled from 'styled-components';
-import Button from './commons/button/Button';
-import PageTitle from './commons/pageTitle/PageTitle';
-import Pagination from './Pagination';
+import Button from '../commons/button/Button';
+import PageTitle from '../commons/pageTitle/PageTitle';
+import Pagination from '../Pagination';
 import { useNavigate } from 'react-router-dom';
 import classifyAdmin from 'utils/classifyAdmin';
 

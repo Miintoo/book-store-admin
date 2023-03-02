@@ -1,5 +1,5 @@
 import React from 'react';
-import UserOrdersManagement from 'components/UserOrdersManagement';
+import UserOrdersManagement from 'components/userManager/UserOrdersManagement';
 
 function UserOrdersManagementPage() {
   return <UserOrdersManagement />;

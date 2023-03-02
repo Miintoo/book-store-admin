@@ -1,5 +1,5 @@
 import React from 'react';
-import AllOrdersManagement from 'components/AllOrdersManagement';
+import AllOrdersManagement from 'components/orderManager/AllOrdersManagement';
 
 function OrderManagementPage() {
   return <AllOrdersManagement />;

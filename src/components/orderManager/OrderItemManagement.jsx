@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Api from 'utils/api';
-import PageTitle from './commons/pageTitle/PageTitle';
-import Pagination from './Pagination';
+import PageTitle from '../commons/pageTitle/PageTitle';
+import Pagination from '../Pagination';
 import styled from 'styled-components';
 import classifyAdmin from 'utils/classifyAdmin';
 

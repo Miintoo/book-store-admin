@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Api from 'utils/api';
 import { format } from 'date-fns';
-import OrderManagementTemplate from './OrderManagementTemplate';
+import OrderManagementTemplate from '../orderManager/OrderManagementTemplate';
 import { useLocation, useNavigate } from 'react-router-dom';
 import classifyAdmin from 'utils/classifyAdmin';
 
