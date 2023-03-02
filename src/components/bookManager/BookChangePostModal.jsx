@@ -62,10 +62,10 @@ function BookChangePostModal({ selectedData, onCancel, onEditSubmit }) {
           category:
           <SelectContainer name="category" onChange={handleEditChange}>
             <option value="">{category}</option>
-            <option value="63f2d82b5b2238b907c9c4f6">만화서적</option>
-            <option value="63f864cd16e9b53a4265460f">기술서적</option>
-            <option value="63f8653a16e9b53a42654620">아동책</option>
-            <option value="63f8656a16e9b53a42654627">소설책</option>
+            <option value="63ff71407b958c65384c6ae6">자기개발서적</option>
+            <option value="63ff714d7b958c65384c6ae8">소설책</option>
+            <option value="640056ecbebc7d0cc3f7fe0a">만화책</option>
+            <option value="640056fdbebc7d0cc3f7fe0c">아동책</option>
           </SelectContainer>
         </ModalInputContainer>
         <ModalInputContainer>

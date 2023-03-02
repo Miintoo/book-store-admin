@@ -33,7 +33,7 @@ function LoginPage() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const baseURL = 'http://elice.iptime.org:8080';
+    const baseURL = 'http://elice.iptime.org:8080/api';
 
     if (!user.email) {
       alert('아이디를 입력 해주세요.');

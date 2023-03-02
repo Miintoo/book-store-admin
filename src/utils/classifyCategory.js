@@ -1,13 +1,13 @@
 export default function classifyCategory(id) {
   switch (id) {
-    case '63f2d82b5b2238b907c9c4f6':
-      return '만화서적';
-    case '63f864cd16e9b53a4265460f':
-      return '기술서적';
-    case '63f8653a16e9b53a42654620':
-      return '아동책';
-    case '63f8656a16e9b53a42654627':
+    case '63ff71407b958c65384c6ae6':
+      return '자기개발서적';
+    case '63ff714d7b958c65384c6ae8':
       return '소설책';
+    case '640056ecbebc7d0cc3f7fe0a':
+      return '만화책';
+    case '640056fdbebc7d0cc3f7fe0c':
+      return '아동책';
     default:
       return '카테고리가 없습니다.';
   }
