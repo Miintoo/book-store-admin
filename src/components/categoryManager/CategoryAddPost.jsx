@@ -59,13 +59,13 @@ function CategoryAddPost({ onSaveData }) {
         <InputContainer>
           <InputChildContainer>
             <AddLabel htmlFor="title">카테고리 명</AddLabel>
-            <AddInput type="text" name="category" value={form.category} onChange={handleChange} />
+            <AddText type="text" name="category" value={form.category} onChange={handleChange} />
           </InputChildContainer>
         </InputContainer>
         <InputContainer>
           <InputChildContainer>
             <AddLabel htmlFor="title">카테고리 설명</AddLabel>
-            <AddInput type="text" name="description" value={form.description} onChange={handleChange} />
+            <AddText type="text" name="description" value={form.description} onChange={handleChange} />
           </InputChildContainer>
         </InputContainer>
         <ButtonContainer>
@@ -116,7 +116,7 @@ const AddLabel = styled.label`
   font-weight: 600;
 `;
 
-const AddInput = styled.input`
+const AddText = styled.textarea`
   width: 90%;
   height: 40px;
   border: 1px solid #b9b9b9;

@@ -38,7 +38,8 @@ function CategoryChangePostModal({ selectedData, onCancel, onEditSubmit }) {
           Title: <ModalInput type="text" name="category" value={edited.category} onChange={handleEditChange} />
         </ModalInputContainer>
         <ModalInputContainer>
-          Author: <ModalInput type="text" name="description" value={edited.description} onChange={handleEditChange} />
+          Description:{' '}
+          <ModalInput type="text" name="description" value={edited.description} onChange={handleEditChange} />
         </ModalInputContainer>
         <ButtonContainer>
           <Button onClick={handleCancel} buttonTitle="취소" width="100px" height="40px" borderRadius="10px" />
