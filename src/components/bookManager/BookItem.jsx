@@ -25,7 +25,7 @@ function BookItem({ bookItem, onDelete, onChangeModal }) {
               onChangeModal(bookItem);
             }}
           >
-            <EditIcon src="images/changeButton.png" alt="수정 아이콘" />
+            <EditIcon src="/images/changeButton.png" alt="수정 아이콘" />
           </EditButton>
         </ManagementTd>
         <ManagementTd>
