@@ -51,14 +51,9 @@ function UserManagement() {
   };
 
   const handleDelete = async (userID) => {
-    console.log(userID);
     try {
       if (window.confirm('해당 유저를 삭제하시겠습니까?')) {
-        await Api.delete('/users', {
-          params: {
-            userID: userID
-          }
-        });
+        await Api.delete(`/users/user/${userID}`);
         window.location.reload();
       }
     } catch (err) {
